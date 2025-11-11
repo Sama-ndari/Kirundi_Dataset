@@ -73,6 +73,86 @@ This community-driven initiative aims to create the **first comprehensive, open-
 
 ---
 
+## 🧳 Understanding Git LFS: The "Luggage" System
+
+<div align="center">
+
+**🎯 Why Your Audio Files Go to Hugging Face, Not GitHub**
+
+</div>
+
+### 📦 The Simple Analogy
+
+Think of this project like traveling with luggage:
+
+| Component | Real World | Our Project |
+|-----------|------------|-------------|
+| 🎒 **Small Backpack** | Your carry-on bag | GitHub/Hugging Face repository |
+| 📓 **Notebook** | Small, lightweight item | `metadata.csv` file |
+| 🧳 **Heavy Suitcase** | Large, bulky luggage | Audio files (`clips/*.wav`) |
+| ✈️ **Luggage Check-in** | Airport baggage service | **Git LFS** (Large File Storage) |
+
+### 🔄 How It Works
+
+1. **Your Repository** (the backpack) holds:
+   - ✅ `metadata.csv` - fits perfectly
+   - ✅ Code and scripts - small text files
+   - ❌ **NOT** the actual audio files (too big!)
+
+2. **Git LFS** (the luggage service) handles:
+   - 🎵 All audio files in `clips/` folder
+   - 📦 Stores them in Hugging Face's special storage
+   - 🏷️ Leaves tiny "luggage tags" (pointers) in your repository
+
+3. **When you push to Hugging Face**:
+   - 📝 Normal Git uploads the small files
+   - 🚀 Git LFS automatically uploads audio to special storage
+   - 🔗 Everything stays connected and accessible
+
+### 🛠️ First-Time Setup (Do This Once)
+
+Before contributing audio, you need to "activate the luggage service":
+
+```bash
+# Step 1: Install Git LFS on your computer
+# On Ubuntu/Debian:
+sudo apt install git-lfs
+
+# On macOS:
+brew install git-lfs
+
+# On Windows: Download from https://git-lfs.github.io/
+
+# Step 2: Initialize Git LFS in your repository
+git lfs install
+
+# Step 3: Tell Git LFS to handle audio files
+git lfs track "clips/*.wav"
+git lfs track "clips/*.mp3"
+
+# Step 4: Commit the LFS configuration
+git add .gitattributes
+git commit -m "Setup Git LFS for audio files"
+```
+
+### ✅ What Contributors See
+
+When you contribute audio, your workflow is exactly the same:
+
+```bash
+# Normal Git commands work perfectly!
+git add clips/your_audio.wav
+git add metadata.csv
+git commit -m "Added audio recording"
+git push
+```
+
+**Behind the scenes**: Git LFS automatically handles the heavy lifting, uploading your audio to Hugging Face's storage while keeping your repository fast and lightweight.
+
+> **🎯 Key Point**: Audio files are stored in **Hugging Face's Git LFS storage**, not in the main repository. This keeps everything fast while preserving all your recordings safely.
+
+---
+
 ### 🌐 Option 2: Add French Translations
 
 <details>
@@ -110,16 +190,17 @@ This community-driven initiative aims to create the **first comprehensive, open-
   - Bit Depth: 16-bit
 
 #### 📋 Steps:
-1. **Setup**: Fork repository and open `metadata.csv`
-2. **Choose**: Find empty `file_path` entries
-3. **Record**: Follow our [Recording Guidelines](#-recording-guidelines)
-4. **Save**: Place audio in `clips/` folder (e.g., `rn_0001.wav`)
-5. **Update Metadata**:
+1. **Setup Git LFS**: Complete the [First-Time Setup](#-first-time-setup-do-this-once) if you haven't already
+2. **Fork & Clone**: Fork repository and clone to your computer
+3. **Choose**: Open `metadata.csv` and find empty `file_path` entries
+4. **Record**: Follow our [Recording Guidelines](#-recording-guidelines)
+5. **Save**: Place audio in `clips/` folder (e.g., `rn_0001.wav`)
+6. **Update Metadata**:
    ```csv
    file_path,kirundi_transcription,french_translation,speaker_id,age,gender
    clips/rn_0001.wav,"Your sentence",,"speaker_001",20s,female
    ```
-6. **Submit**: Create Pull Request with audio + metadata
+7. **Submit**: Create Pull Request with audio + metadata
 
 > **🔒 Privacy**: Use anonymous speaker IDs. Your personal information is never required.
 

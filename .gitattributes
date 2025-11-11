@@ -1,0 +1,2 @@
+clips/*.wav filter=lfs diff=lfs merge=lfs -text
+clips/*.mp3 filter=lfs diff=lfs merge=lfs -text
